@@ -1,0 +1,28 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/disputes/autofill
+method: POST
+body:
+  type: json
+  content: "{{activePayload}}"
+scripts:
+  - type: beforeRequest
+    code: "const payload1 = `I bought a blender online for $45.99 but it arrived
+      completely shattered. I called their support team yesterday but they
+      refused to help me or issue a refund.`;\r
+
+      \r
+
+      const payload2 = `I got charged twice for my coffee order this morning! I
+      haven't gone back to the cafe yet to ask them about it.`;\r
+
+      \r
+
+      const payload3 = `Someone just spent $800 on my card at an electronics
+      store in Miami! I live in Chicago and I'm holding my card right now!`;\r
+
+      \r
+
+      pm.variables.set(\"activePayload\", payload1);"
+    language: text/javascript
+order: 1788784323408

@@ -1,0 +1,21 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/payments/simulate-crash/{{activeException}}
+method: GET
+scripts:
+  - type: beforeRequest
+    code: "const npe = \"npe\";\r
+
+      const timeout = \"timeout\";\r
+
+      const dbConstraint = \"db-constraint\";\r
+
+      const downstream4xx = \"downstream-4xx\";\r
+
+      \r
+
+      // Change only this line to pick which one runs:\r
+
+      pm.variables.set(\"activeException\", npe);"
+    language: text/javascript
+order: 1788784449260

@@ -1,0 +1,7 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/docs/ask?query=explain Neural Networks?
+method: GET
+queryParams:
+  query: explain Neural Networks?
+order: 1788784446656

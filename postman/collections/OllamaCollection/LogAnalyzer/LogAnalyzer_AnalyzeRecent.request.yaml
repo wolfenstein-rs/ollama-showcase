@@ -1,0 +1,5 @@
+$kind: http-request
+description: ""
+url: GET http://localhost:8080/api/logs/analyze-recent
+method: GET
+order: 342294846608

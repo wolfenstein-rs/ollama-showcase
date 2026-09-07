@@ -1,0 +1,82 @@
+$kind: http-request
+description: ""
+url: http://localhost:8080/api/logs/analyze
+method: POST
+body:
+  type: json
+  content: "{{activePayload}}"
+scripts:
+  - type: beforeRequest
+    code: "const payload1 = `2026-09-06T14:22:10.512+05:30 ERROR 18420 --- [nio-8080-exec-1] c.o.simulator.PaymentSimulationController : CRITICAL: Payment gateway transaction failed due to nested system exception.\r
+
+      \r
+
+      java.lang.NullPointerException: Cannot invoke \"String.isEmpty()\" because \"customerId\" is null\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.verifyCustomerAccount(PaymentSimulationController.java:71)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.processPaymentTransaction(PaymentSimulationController.java:65)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.runAndLog(PaymentSimulationController.java:52)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.simulateNpe(PaymentSimulationController.java:22)`;\r
+
+      \r
+
+      \r
+
+      const payload2 = `2026-09-06T14:23:41.204+05:30 ERROR 18420 --- [nio-8080-exec-2] c.o.simulator.PaymentSimulationController : CRITICAL: Payment gateway did not respond in time.\r
+
+      \r
+
+      java.lang.RuntimeException: Gateway call failed\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.lambda$simulateTimeout$1(PaymentSimulationController.java:26)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.runAndLog(PaymentSimulationController.java:52)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.simulateTimeout(PaymentSimulationController.java:24)\r
+
+      Caused by: java.net.SocketTimeoutException: Read timed out after 5000ms connecting to payments-gateway-service\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.lambda$simulateTimeout$1(PaymentSimulationController.java:27)\r
+
+      \t... 2 more`;\r
+
+      \r
+
+      \r
+
+      const payload3 = `2026-09-06T14:24:15.887+05:30 ERROR 18420 --- [nio-8080-exec-4] c.o.simulator.PaymentSimulationController : CRITICAL: Failed to persist payment record.\r
+
+      \r
+
+      com.ollamademo.simulator.PaymentSimulationController$PaymentPersistenceException: could not execute statement; constraint [uk_payment_reference] violated\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.lambda$simulateDbConstraint$2(PaymentSimulationController.java:31)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.runAndLog(PaymentSimulationController.java:52)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.simulateDbConstraint(PaymentSimulationController.java:29)`;\r
+
+      \r
+
+      \r
+
+      const payload4 = `2026-09-06T14:25:03.118+05:30 ERROR 18420 --- [nio-8080-exec-3] c.o.simulator.PaymentSimulationController : CRITICAL: Downstream fraud-check service rejected the request.\r
+
+      \r
+
+      org.springframework.web.client.RestClientException: 400 Bad Request from fraud-check-service: missing required field 'customerRiskScore'\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.lambda$simulateDownstream4xx$3(PaymentSimulationController.java:35)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.runAndLog(PaymentSimulationController.java:52)\r
+
+      \tat com.ollamademo.simulator.PaymentSimulationController.simulateDownstream4xx(PaymentSimulationController.java:33)`;\r
+
+      \r
+
+      pm.variables.set(\"activePayload\", payload4);"
+    language: text/javascript
+order: 232094748443893
